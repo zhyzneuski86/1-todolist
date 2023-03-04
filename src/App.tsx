@@ -17,7 +17,7 @@ function App(): JSX.Element {
 
     return (
         <div className="App">
-            <TodoList title={"What to learn"} task={tasks}/>
+            <TodoList title={"What to learn"} tasks={tasks}/>
             {/*<TodoList title = {"What to read"}/>*/}
             {/*<TodoList title = {"What to buy"}/>*/}
         </div>
