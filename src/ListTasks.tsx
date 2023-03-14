@@ -3,24 +3,21 @@ import {FilterValuesType, TaskType} from "./App";
 
 export type ListTasksType = {
     tasks: Array<TaskType>
-    removeTask: (taskId: number) => void
-    changeTodoListFilter:(filter: FilterValuesType) => void
-
-
-
+    removeTask: (taskId: string) => void
+    changeTodoListFilter: (filter: FilterValuesType) => void
 }
 
 
 const ListTasks: FC<ListTasksType> = (props) => {
 
     const todoListItems: Array<JSX.Element> = props.tasks.map((task, i) => {
+        const removeTaskHandler = () => props.removeTask(task.id)
+
         return (
             <li key={i}>
                 <input type="checkbox" checked={task.isDone}/>
                 <span>{task.title}</span>
-                <button onClick={() => {
-                    props.removeTask(task.id)
-                }}>+
+                <button onClick={removeTaskHandler}>+
                 </button>
             </li>
         )
@@ -34,13 +31,16 @@ const ListTasks: FC<ListTasksType> = (props) => {
             <div>
                 <button onClick={() => {
                     props.changeTodoListFilter("all")
-                }}>All</button>
+                }}>All
+                </button>
                 <button onClick={() => {
                     props.changeTodoListFilter("active")
-                }}>Active</button>
+                }}>Active
+                </button>
                 <button onClick={() => {
                     props.changeTodoListFilter("completed")
-                }}>Completed</button>
+                }}>Completed
+                </button>
             </div>
         </div>
     );
